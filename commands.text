@@ -1,0 +1,6 @@
+qsub -N generate_graphs -o generate_graphs.out -e generate_graphs.err -V generate_graphs.sh
+      
+mkdir exp_GE_GNN_varying_terminal/log_folder_exact
+export LOG_FOLDER=exp_GE_GNN_varying_terminal/log_folder_exact
+export MAP_FILE=exp_GE_GNN_varying_terminal/id_to_file.csv
+qsub -J 1-2 -N compute_mlst -o $LOG_FOLDER/compute_mlst.out -e $LOG_FOLDER/compute_mlst.err -V compute_mlst_python2.sh

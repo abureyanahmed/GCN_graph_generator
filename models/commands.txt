@@ -1,0 +1,9 @@
+/usr/local/opt/python\@3.8/bin/python3.8 solver.py
+
+unzip exp_ER_GNN_Steiner_TSP_50.zip
+vi move_data.py
+cp move_data.py move_data_spanners.py
+
+cp solver.py solver_spanner.py
+
+

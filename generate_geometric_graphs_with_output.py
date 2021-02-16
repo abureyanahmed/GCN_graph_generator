@@ -18,7 +18,9 @@ def generate():
   #root_folder = "exp_ER_GNN_Steiner_TSP"
   #root_folder = "exp_ER_GNN_Steiner_TSP_50"
   #root_folder = "exp_ER_GNN_varying_node"
-  root_folder = "exp_GE_GNN_varying_terminal"
+  #root_folder = "exp_GE_GNN_varying_terminal"
+  #root_folder = "exp_BA_GNN_696E"
+  root_folder = "exp_GE_GNN_696E"
   #call(["rm", "-rf", "Graph_generator/"+experiment_name])
   call(["mkdir", root_folder])
   #name_of_graph_class = ['WS','ER','BA','GE']
@@ -36,7 +38,8 @@ def generate():
   #number_of_nodes_progression = [100, 100, 100, 100, 100, 100]
   #number_of_nodes_progression = [30, 30]
   #number_of_nodes_progression = [15]
-  number_of_nodes_progression = [50]
+  #number_of_nodes_progression = [50]
+  number_of_nodes_progression = [200]
   #number_of_levels = [1, 2, 3]
   #number_of_levels = [2, 3, 4, 5, 6, 7]
   #number_of_levels = [2, 3]
@@ -47,25 +50,29 @@ def generate():
   #node_distribution_in_levels_code = ['0','1']
   #node_distribution_in_levels = ['L']
   #node_distribution_in_levels_code = ['0']
-  node_distribution_in_levels = ['10', '20', '30', '40', '50', '60', '70', '80', '90']
-  node_distribution_in_levels_code = ['10', '20', '30', '40', '50', '60', '70', '80', '90']
+  #node_distribution_in_levels = ['10', '20', '30', '40', '50', '60', '70', '80', '90']
+  #node_distribution_in_levels_code = ['10', '20', '30', '40', '50', '60', '70', '80', '90']
+  node_distribution_in_levels = ['20', '40', '60', '80']
+  node_distribution_in_levels_code = ['20', '40', '60', '80']
   #param1 = ['6', '.25', '5', '1.62']
   #param2 = ['.2', '0', '0', '0']
-  param1 = ['.25']
-  param2 = ['0']
+  #param1 = ['.25']
+  #param2 = ['0']
   #param1 = ['6']
   #param2 = ['.2']
-  #param1 = ['5']
-  #param2 = ['0']
+  param1 = ['5']
+  param2 = ['0']
   initial_nodes = 10
-  node_increment = 5
+  #node_increment = 5
+  node_increment = 10
   #initial_nodes = 20
   #node_increment = 20
   #initial_nodes = 15
   #initial_nodes = 50
   #number_of_graphs_with_same_setting = 5
   #number_of_graphs_with_same_setting = 200
-  number_of_graphs_with_same_setting = 50
+  #number_of_graphs_with_same_setting = 50
+  number_of_graphs_with_same_setting = 32
   curr_id = 1
   f1 = open(root_folder + '/id_to_file.csv', 'w')
   f2 = open(root_folder + '/id_to_file_qos.csv', 'w')
@@ -81,8 +88,8 @@ def generate():
         if name_of_graph_class[cl] == 'ER':
          param1[cl] = str((1+1)*math.log(p)/p)
         elif name_of_graph_class[cl] == 'GE':
-         #param1[cl] = str(math.sqrt((1+1)*math.log(p)/(math.pi*p)))
-         param1[cl] = str(.5*((-p/40)+(5/4)) + .2*((p/40)-(1/4)))
+         param1[cl] = str(math.sqrt((1+1)*math.log(p)/(math.pi*p)))
+         #param1[cl] = str(.5*((-p/40)+(5/4)) + .2*((p/40)-(1/4)))
         #call(["python3", "graph_non_uniform_generator.py", str(number_of_levels[l]), str(p), root_folder + "/graph_" + common_part_of_name + '_' + str(p) + '_' + str(i), name_of_graph_class_code[cl], param1[cl], param2[cl], node_distribution_in_levels_code[nd]])
         call(["python3", "unweighted_graph_generator_different_terminals.py", str(number_of_levels[l]), str(p), root_folder + "/graph_" + common_part_of_name + '_' + str(p) + '_' + str(i), name_of_graph_class_code[cl], param1[cl], param2[cl], node_distribution_in_levels_code[nd]])
         f1.write(str(curr_id) + ';' + 'mlst_exact_output_graph.py' + ';' + root_folder + ';' + "graph_" + common_part_of_name + '_' + str(p) + '_' + str(i) + ';' + 'output_exact.csv' + ';\n')
